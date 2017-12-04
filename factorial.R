@@ -11,5 +11,3 @@ FACTORIAL <- function(n){
     return(product)
   }
 }
-
-FACTORIAL(5)
