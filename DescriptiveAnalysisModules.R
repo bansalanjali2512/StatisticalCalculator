@@ -131,3 +131,53 @@ IQR <- function(x) {
   q1 <- calculatedQuartiles[1]
   return (q3 - q1)
 }
+
+SKEWNESS <- function(x) {
+  calculatedMean <- MEAN(x)
+  n <- length(x)
+  numerator <- 0
+  for (i in x) {
+    numerator <- (numerator + ((i - calculatedMean)^3))
+  }
+  denominator <- (n * (SD(x)^3))
+  g1 <- (numerator / denominator)
+  return (g1)
+}
+
+KURTOSIS <- function(x) {
+  calculatedMean <- MEAN(x)
+  n <- length(x)
+  numerator <- 0
+  for (i in x) {
+    numerator <- (numerator + ((i - calculatedMean)^4))
+  }
+  denominator <- (n * (VARIANCE(x)^2))
+  g2 <- ((numerator / denominator) - 3)
+  return (g2)
+}
+
+MOMENTS <- function(x) {
+  #Returns the values of first four quartiles.
+  calculatedMean <- MEAN(x)
+  n <- length(x)
+  m1 <- 0
+  m2 <- 0
+  m3 <- 0
+  m4 <- 0
+  
+  for (i in x) {
+    m1 <- m1 + (i - calculatedMean)
+    m2 <- m2 + ((i - calculatedMean)^2)
+    m3 <- m3 + ((i - calculatedMean)^3)
+    m4 <- m4 + ((i - calculatedMean)^4)
+  }
+  
+  M1 <- formatC(m1,digits = 6, format = "f")
+  M2 <- formatC(m2,digits = 6, format = "f")
+  M3 <- formatC(m3,digits = 6, format = "f")
+  M4 <- formatC(m4,digits = 6, format = "f")
+  
+  calculatedMoments <- cbind(M1, M2, M3, M4)
+  return (calculatedMoments)
+}
+
