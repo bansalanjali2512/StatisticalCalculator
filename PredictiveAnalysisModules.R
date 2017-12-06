@@ -33,3 +33,27 @@ CORRELATION <- function(x,y){
   return(r)
   
 }
+
+
+MULTREG <- function(x1,x2,y){
+  #This is Multiple Linear Regression.
+  #Assumptions : Works for 3 varibles only, 2 independent and one dependent.
+  A <- matrix(nrow = 3,ncol = 3)
+  A[1,1] <- length(y)
+  A[1,2] <- sum(x1)
+  A[1,3] <- sum(x2)
+  A[2,1] <- sum(x1)
+  A[2,2] <- sum(x1^2)
+  A[2,3] <- sum(x1*x2)
+  A[3,1] <- sum(x2)
+  A[3,2] <- sum(x2*x1)
+  A[3,3] <- sum(x2^2)
+  
+  B <- matrix(nrow = 3,ncol = 1)
+  B[1,1] <- sum(y)
+  B[2,1] <- sum(x1*y)
+  B[3,1] <- sum(x2*y)
+  
+  X <- solve(A,B)
+  return(X)
+}
