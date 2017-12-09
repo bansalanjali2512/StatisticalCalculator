@@ -47,3 +47,26 @@ HYPERGEOMETRIC <- function(N,K,n,k){
   probability <- (COMBINATION(K,k)*COMBINATION((N-K),(n-k)))/COMBINATION(N,n)
   return(probability)
 }
+
+
+NEGATIVEBIN <- function(k,r,p){
+  #Assumptions  : Works well with valid inputs.
+  #Valid Inputs : k+r-1 greater than or equal to k (Number of successes).
+  #               p is probability ranging from 0-1, both inclusive.
+  
+  #k : Number of successes.
+  #r : Number of failures.
+  #p : Probability.
+  
+  probability <- COMBINATION((k+r-1),k)*(p**k)*((1-p)**r)
+  return(probability)
+}
+
+POISSON <- function(lambda,k){
+  #Assumptions  : Works well with valid inputs.
+  #Valid Inputs : k is a whole number.
+
+  e <- 2.718281
+  probability <- ((e**(-lambda))*(lambda**k))/FACTORIAL(k)
+  return(probability)
+}
