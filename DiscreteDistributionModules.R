@@ -62,11 +62,41 @@ NEGATIVEBIN <- function(k,r,p){
   return(probability)
 }
 
+
 POISSON <- function(lambda,k){
   #Assumptions  : Works well with valid inputs.
   #Valid Inputs : k is a whole number.
 
   e <- 2.718281
   probability <- ((e**(-lambda))*(lambda**k))/FACTORIAL(k)
+  return(probability)
+}
+
+
+MULTINOMIAL <- function(x1,x2,x3,n,p1,p2,p3){
+  #Assumptions  : Works well with valid inputs and for three random variables only.
+  #Valid Inputs : n is a natural number, also n should be x1+x2+x3
+  #               xi's should be positive.
+  #               pi's should be in range 0-1, both inclsuive.
+  
+  
+  facN <- FACTORIAL(n)
+  facx1 <- FACTORIAL(x1)
+  facx2 <- FACTORIAL(x2)
+  facx3 <- FACTORIAL(x3)
+  probability <- (facN/(facx1*facx2*facx3))*(p1**x1)*(p2**x2)*(p3**x3)
+  return(probability)
+}
+
+
+MULTIHYPGEO <- function(x1,x2,x3,x4,M1,M2,M3,M4){
+  #Assumptions  : Works well with valid inputs and for four random variables only.
+  #Valid Inputs : xi's should be positive.
+  #               Mi's should be positive.
+  
+  N <- M1+M2+M3+M4
+  n <- x1+x2+x3+x4
+  numerator <- COMBINATION(M1,x1)*COMBINATION(M2,x2)*COMBINATION(M3,x3)*COMBINATION(M4,x4)
+  probability <- numerator/COMBINATION(N,n)
   return(probability)
 }
